@@ -6,7 +6,8 @@ const deleteTodoController = async (req, res) => {
         const { id } = req.params;
 
         // Query DB and delete
-        const todo = await Todo.findByIdAndDelete(id)
+        const userId = req.user.id
+        const todo = await Todo.findOneAndDelete({_id:id,user:req.user.id})
 
          // Send Response Back to Client
          res.status(201).json({

@@ -6,9 +6,11 @@ const deleteTaskTodoCOntroller = async (req,res)=> {
         const { id, idx } = req.params
 
         // Query DB and Delete task
-        const todo = await Todo.findById(id);
-        todo.tasks.splice(idx,1)
-        todo.save()
+        const todo = await Todo.find({_id:id,user:req.user.id});
+        console.log(todo)
+        console.log(todo[0].tasks)
+        todo[0].tasks.splice(idx,1)
+        todo[0].save()
 
          // Send Response Back to Client
          res.status(201).json({
