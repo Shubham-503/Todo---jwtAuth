@@ -16,12 +16,16 @@ const editTaskTodoController = async (req, res) => {
 
         // Query DB and edit task
         // newtasks=
-        const todo = await Todo.find({_id:id,user:req.user.id});
-        todo[0].tasks[idx]=task
+        const todo = await Todo.find({ _id: id, user: req.user.id });
+        if (todo.length == 0)
+            return res.status(200).json({
+                message: "No todo found"
+            })
+        todo[0].tasks[idx] = task
         todo[0].save()
 
-         // Send Response Back to Client
-         res.status(201).json({
+        // Send Response Back to Client
+        res.status(201).json({
             success: true,
             message: 'Task Edited Successfully',
             todo,

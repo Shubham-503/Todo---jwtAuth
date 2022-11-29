@@ -5,8 +5,11 @@ const getTodosController = async (req, res) => {
        
 
         // Query DB and get todo
-        const todos = await Todo.find();
-
+        const todos = await Todo.find({user:req.user.id});
+        if (todos.length == 0)
+        return res.status(200).json({
+            message: "No todo found"
+        })
         // Send Response Back to Client
         res.status(200).json({
             success: true,

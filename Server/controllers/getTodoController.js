@@ -6,7 +6,11 @@ const getTodoController = async (req, res) => {
         const {id} = req.params
 
         // Query DB and get todo
-        const todo = await Todo.findById(id);
+        const todo = await Todo.find({_id:id,user:req.user.id});
+        if (todo.length == 0)
+        return res.status(200).json({
+            message: "No todo found"
+        })
 
         // Send Response Back to Client
         res.status(200).json({
