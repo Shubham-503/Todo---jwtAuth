@@ -1,4 +1,5 @@
 const Todo = require("../models/Todo")
+const {ObjectId} = require("mongoose")
 
 const createTaskTodoController = async (req, res) => {
     try {
@@ -16,9 +17,9 @@ const createTaskTodoController = async (req, res) => {
 
         //Add Task to DB
         const todo = await Todo.findById(todoId)
-        if(todo.user!==req.cookies.id){
-            console.log("")
-           return res.status(400).json({
+        console.log((todo.user).valueOf(),req.user.id)
+        if ((todo.user).valueOf() !== req.user.id) {
+            return res.status(400).json({
                 success: false,
                 message: "Dont have permission to add"
             })
