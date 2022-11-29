@@ -21,7 +21,7 @@ const searchTodos = async (req, res) => {
         }
 
         // Search for todo and tasks
-        const todo = await Todo.find({ $or: [{ title: new RegExp(q, 'i') }, { tasks: new RegExp(q, 'i') }] })
+        const todo = await Todo.find({ $or: [{ title: new RegExp(q, 'i') }, { tasks: new RegExp(q, 'i') }],  $and:[{user:req.user.id}] })
         // const s = await Todo.find({ title: new RegExp(q,'i') })
 
         if (todo.length == 0)

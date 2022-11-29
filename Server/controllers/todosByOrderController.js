@@ -12,7 +12,7 @@ const todosByOrderController = async (req, res) => {
             order = 1
         }
         // Query DB and get todo
-        const todos = await Todo.find().sort({ updatedAt: order })
+        const todos = await Todo.find({user:req.user.id}).sort({ updatedAt: order })
 
         // Send Response Back to Client
         res.status(200).json({

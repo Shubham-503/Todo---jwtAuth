@@ -15,9 +15,9 @@ const editTodoController = async (req, res) => {
         }
 
         // Query DB and edit title
-        const todo = await Todo.findById(id);
-        todo.title = title
-        todo.save()
+        const todo = await Todo.findOneAndUpdate({_id:id,user:req.user.id},{title});
+        // todo.title = title
+        // todo.save()
 
         // Send Response Back to Client
         res.status(201).json({
