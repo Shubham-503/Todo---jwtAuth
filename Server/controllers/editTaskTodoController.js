@@ -15,9 +15,10 @@ const editTaskTodoController = async (req, res) => {
         }
 
         // Query DB and edit task
-        const todo = await Todo.findById(id);
-        todo.tasks[idx]=task
-        todo.save()
+        // newtasks=
+        const todo = await Todo.find({_id:id,user:req.user.id});
+        todo[0].tasks[idx]=task
+        todo[0].save()
 
          // Send Response Back to Client
          res.status(201).json({
