@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
-var cookieParser = require('cookie-parser')
 
 
 //import model - User
@@ -30,7 +29,7 @@ const loginUserController = async (req, res) => {
                 expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
                 httpOnly: true
             }
-            res.status(200).cookie("token", token, options).json({
+            return res.status(200).cookie("token", token, options).json({
                 success: true,
                 token,
                 user
@@ -38,10 +37,12 @@ const loginUserController = async (req, res) => {
 
         }
         //create token and send
-        res.sendStatus(400).send("email or password is incorrect")
+       return res.sendStatus(400).send("email or password is incorrect")
     } catch (error) {
         console.log(error);
     }
 
     
 }
+
+module.exports = loginUserController

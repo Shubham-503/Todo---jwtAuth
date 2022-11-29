@@ -16,6 +16,13 @@ const createTaskTodoController = async (req, res) => {
 
         //Add Task to DB
         const todo = await Todo.findById(todoId)
+        if(todo.user!==req.cookies.id){
+            console.log("")
+           return res.status(400).json({
+                success: false,
+                message: "Dont have permission to add"
+            })
+        }
         todo.tasks.push(task)
         todo.save()
 

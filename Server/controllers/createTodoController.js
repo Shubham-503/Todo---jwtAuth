@@ -12,8 +12,10 @@ const createTodoController = async (req, res) => {
                 message: "Title Can't be Empty",
             })
         }
+        console.log(req.user)
+        const userId = req.user.id
         // Create Todo and Save in DB
-        const todo = await Todo.create({ title })
+        const todo = await Todo.create({ title,user:userId })
 
         // Send Response Back to Client
         res.status(201).json({

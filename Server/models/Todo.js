@@ -13,6 +13,10 @@ const TodoSchema = new mongoose.Schema({
     tasks: {
         type: [String],
         trim: true
+    },
+    user: {
+        type: mongoose.ObjectId,
+        required:[true, "user Id is missing"]
     }
 },{
     timestamps: true

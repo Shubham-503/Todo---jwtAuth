@@ -15,16 +15,19 @@ const deleteTaskTodoController = require('../controllers/deleteTaskTodoControlle
 const searchTodos = require('../controllers/searchtodos')
 const todosByOrderController = require('../controllers/todosByOrderController')
 const registerUserController = require('../controllers/registerUserController')
+const loginUserController = require('../controllers/loginUserController')
+const auth = require('../middlewares/auth')
 
 // Routes
 
 router.post('/registeruser',registerUserController)
+router.post('/loginuser',loginUserController)
 router.get('/gettodos',getTodosController)
 router.get('/gettasks/:id',getTasksTodoController)
 router.get('/gettodo/:id',getTodoController)
 router.get('/gettask/:id/:idx',getTaskTodoController)
-router.post('/createtodo',createTodoController)
-router.post('/createtask/:id',createTaskTodoController)
+router.post('/createtodo',auth,createTodoController)
+router.post('/createtask/:id',auth,createTaskTodoController)
 router.put('/edittodo/:id',editTodoController)
 router.put('/edittask/:id/:idx',editTaskTodoController)
 router.delete('/deletetodo/:id',deleteTodoController)
