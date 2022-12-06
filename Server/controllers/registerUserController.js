@@ -11,14 +11,14 @@ const registerUserController = async (req, res)=>{
         const {firstname, lastname, email, password } = req.body
         //validate the data, if exists
         if (!(email && password && lastname && firstname)) {
-            res.status(401).send("All fileds are required")
+           return res.status(401).send("All fileds are required")
         }
         //check if email is in correct format
 
         //check if user exists or not
         const existingUser = await User.findOne({ email})
         if (existingUser) {
-            res.status(401).send("User already found in database")
+            return  res.status(401).send("User already found in database")
         }
 
         //encrypt the password

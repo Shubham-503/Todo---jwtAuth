@@ -17,11 +17,13 @@ const todosByOrderController = require('../controllers/todosByOrderController')
 const registerUserController = require('../controllers/registerUserController')
 const loginUserController = require('../controllers/loginUserController')
 const auth = require('../middlewares/auth')
+const logoutUserController = require('../controllers/logoutUserController')
 
 // Routes
 
 router.post('/registeruser',registerUserController)
 router.post('/loginuser',loginUserController)
+router.get('/logoutuser',logoutUserController)
 router.get('/gettodos',auth,getTodosController)
 router.get('/gettasks/:id',auth,getTasksTodoController)
 router.get('/gettodo/:id',auth,getTodoController)

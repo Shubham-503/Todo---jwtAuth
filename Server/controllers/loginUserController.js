@@ -11,7 +11,7 @@ const loginUserController = async (req, res) => {
         const {email, password} = req.body
         //validate
         if (!(email && password)) {
-            res.status(401).send("email and password is required")
+          return  res.status(401).send("email and password is required")
         }
 
         //check user in database
@@ -37,7 +37,7 @@ const loginUserController = async (req, res) => {
 
         }
         //create token and send
-       return res.sendStatus(400).send("email or password is incorrect")
+       return res.status(400).send("email or password is incorrect")
     } catch (error) {
         console.log(error);
     }
