@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 
-const TodoForm = ({createTodo}) => {
+const TodoForm = ({ createTodo }) => {
   const [title, setTitle] = useState("")
 
- 
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,13 +14,16 @@ const TodoForm = ({createTodo}) => {
 
   return (
     <div className="todoForm">
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <div className="todoinput  mt-4 flex items-center justify-between text-xl">
-          <input className=' p-2' type="text" placeholder='Enter your Todo' name='title' value={title} onChange={(e) => setTitle(e.target.value)} />
-          <button className='ml-8  border-2 border-red border-solid' type="submit">Create</button>
-        </div>
+     
+      <div class="flex  w-screen items-center justify-center p-5">
+        <form class="w-full rounded-lg bg-gray-200 p-5 w-2/4" onSubmit={(e) => handleSubmit(e)} >
+          <div class="flex">
+            <input type="text" class="w-full bg-white pl-2 text-base font-semibold outline-0 rounded-tl-lg rounded-bl-lg "  value={title} onChange={(e) => setTitle(e.target.value)} placeholder="" id="" />
+            <input type="submit" value="Add Todo" class="bg-blue-500 p-2 rounded-tr-lg rounded-br-lg text-white font-semibold hover:bg-blue-800 transition-colors" />
+          </div>
+        </form>
+      </div>
 
-      </form>
     </div>
 
   )
