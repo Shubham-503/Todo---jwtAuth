@@ -10,10 +10,10 @@ const TodoSchema = new mongoose.Schema({
         required: [true, "Title is required"],
         trim: true
     },
-    tasks: {
-        type: [String],
-        trim: true
-    },
+    tasks: [{
+        task:String,
+        isCompleted:Boolean
+    }],
     user: {
         type: mongoose.ObjectId,
         required:[true, "user Id is missing"]

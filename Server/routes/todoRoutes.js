@@ -18,6 +18,7 @@ const registerUserController = require('../controllers/registerUserController')
 const loginUserController = require('../controllers/loginUserController')
 const auth = require('../middlewares/auth')
 const logoutUserController = require('../controllers/logoutUserController')
+const toggleTaskStatusController = require('../controllers/toggleTaskStatusController')
 
 // Routes
 
@@ -32,6 +33,7 @@ router.post('/createtodo',auth,createTodoController)
 router.post('/createtask/:id',auth,createTaskTodoController)
 router.put('/edittodo/:id',auth,editTodoController)
 router.put('/edittask/:id/:idx',auth,editTaskTodoController)
+router.put('/toggletaskstatus/:id/:idx',toggleTaskStatusController)
 router.delete('/deletetodo/:id',auth,deleteTodoController)
 router.delete('/deletetask/:id/:idx',auth,deleteTaskTodoController)
 router.get('/search',auth,searchTodos)

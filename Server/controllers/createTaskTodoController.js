@@ -24,7 +24,7 @@ const createTaskTodoController = async (req, res) => {
                 message: "Dont have permission to add"
             })
         }
-        todo.tasks.push(task)
+        todo.tasks.push({task,isCompleted:false})
         todo.save()
 
         // send response to client
